@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gerador de gráfico ponte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<aside>
+  <div>
+    <h1>Gerador de gráfico ponte</h1>
+    <p class="lede">Importe a planilha e o gráfico sai no padrão do slide: base em cinza, degraus por empresa, resultado em roxo.</p>
+  </div>
+
+  <section>
+    <h2>Planilha</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".xlsx,.xlsm,.xls,.csv">
+      <strong>Escolher arquivo</strong>
+      <span>ou arraste para cá (.xlsx ou .csv)</span>
+    </label>
+    <div class="file-name" id="fileName"></div>
+    <div id="sheetWrap" hidden>
+      <label class="f" for="sheet">Aba</label>
+      <select id="sheet"></select>
+    </div>
+  </section>
+
+  <section id="cfg" hidden>
+    <h2>Linhas</h2>
+    <label class="f" for="baseRow">Barra inicial (cinza)</label>
+    <select id="baseRow"></select>
+    <label class="f" for="endRow">Barra final (roxa)</label>
+    <select id="endRow"></select>
+    <label class="f" for="totalCol">Coluna do total</label>
+    <select id="totalCol"></select>
+  </section>
+
+  <section id="cfgSteps" hidden>
+    <h2>Degraus</h2>
+    <div class="steps" id="steps"></div>
+    <div class="check" id="check" hidden></div>
+  </section>
+
+  <section id="cfgText" hidden>
+    <h2>Textos</h2>
+    <div class="row2">
+      <div><label class="f" for="baseLabel">Rótulo inicial</label><input type="text" id="baseLabel"></div>
+      <div><label class="f" for="endLabel">Rótulo final</label><input type="text" id="endLabel"></div>
+    </div>
+    <label class="f" for="unit">Unidade dos valores</label>
+    <select id="unit">
+      <option value="mil">R$ mil, sem casas decimais</option>
+      <option value="mi">R$ milhões, uma casa decimal</option>
+    </select>
+    <label class="f" for="note">Nota de rodapé</label>
+    <input type="text" id="note">
+  </section>
+
+  <section id="cfgExport" hidden>
+    <h2>Exportar</h2>
+    <div class="btns">
+      <button id="btnPng">Baixar PNG</button>
+      <button id="btnSvg" class="ghost">Baixar SVG</button>
+    </div>
+    <div class="msg" id="exportMsg" role="status"></div>
+  </section>
+</aside>
+
+<main>
+  <div class="stage" id="stage">
+    <div class="empty"><p><b>Nenhuma planilha carregada</b>Importe um arquivo com os nomes das empresas na primeira linha e, abaixo, uma linha para a base (6 + 6) e outra para o resultado (FCST).</p></div>
+  </div>
+  <p class="hint" id="hint" hidden>Cada degrau é a diferença entre a linha final e a inicial na coluna da empresa. Colunas que somam outras (como Oniz e Titãs quando existem as aberturas por UF) vêm desmarcadas para não contar a receita duas vezes.</p>
+</main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
