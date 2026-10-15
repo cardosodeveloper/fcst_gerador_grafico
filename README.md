@@ -9,9 +9,9 @@ Como usar
 4. Baixe o gráfico em PNG ou SVG.
 
 Formato esperado da planilha
-- Primeira linha: na coluna A um título qualquer; nas demais, BRAVEO (total) e as empresas.
+- Primeira linha: na coluna A um título qualquer; nas demais, (total) e as empresas.
 - Linhas abaixo: cenários (ex.: "6 + 6", "FCST 12/10"), com os valores em R$ mil.
-- Colunas que somam outras (ex.: "Oniz" quando existem "ONIZ - RS", "ONIZ - PR"...)
+- Colunas que somam outras
   vêm desmarcadas para não contar a receita duas vezes.
 
 Arquivos
